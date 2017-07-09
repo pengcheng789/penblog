@@ -1,4 +1,4 @@
-package top.pengcheng789.java.penblog.controller.admin;
+package top.pengcheng789.java.penblog.controller.user;
 
 import top.pengcheng789.java.penblog.model.User;
 import top.pengcheng789.java.penblog.service.UserService;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by pen on 17-7-6.
  */
 
-@WebServlet("/admin/user")
+@WebServlet("/user/list")
 public class ManageUserServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -24,7 +24,7 @@ public class ManageUserServlet extends HttpServlet{
 
         request.setAttribute("users", users);
 
-        request.getRequestDispatcher("/WEB-INF/views/admin/user.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/user/list.jsp")
                 .forward(request, response);
     }
 }

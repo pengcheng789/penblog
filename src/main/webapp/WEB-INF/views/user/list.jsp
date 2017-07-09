@@ -13,7 +13,6 @@
     <title>Manage User - PenBlog</title>
 </head>
 <body>
-    <h1>要删除的是：${id} ${result}</h1>
     <table>
         <tr>
             <th>id</th>
@@ -22,6 +21,7 @@
             <th>password</th>
             <th>sex</th>
             <th>create_date</th>
+            <th>head_image_path</th>
             <th>operate</th>
         </tr>
 
@@ -33,11 +33,10 @@
                 <td>${user.password}</td>
                 <td>${user.sex}</td>
                 <td>${user.create_date}</td>
+                <td>${user.head_image}</td>
                 <td>
-                    <a href="#">edit</a>
-                    <a href="<c:url value="/admin/user/delete/${user.id}" />">
-                        delete
-                    </a>
+                    <a href="<c:url value="/user/profile/${user.id}" />">view</a>
+                    <a href="<c:url value="/user/delete/${user.id}" />">delete</a>
                 </td>
             </tr>
         </c:forEach>

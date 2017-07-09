@@ -1,0 +1,22 @@
+.head {
+    margin-top: 80px;
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.head_image {
+    text-align: center;
+}
+
+.head_image img{
+    width: 180px;
+    height: 180px;
+}
+
+.information {
+    margin-top: 20px;
+    font-size: 18px;
+    font-family: "Noto Sans CJK SC Black";
+    text-align: center;
+}

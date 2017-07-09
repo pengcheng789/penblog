@@ -11,13 +11,13 @@
 <head>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet"
+          href="<c:url value="/statics/css/user/register.css" /> ">
     <title>Register user - PenBlog</title>
-    <link type="text/css" rel="stylesheet"
-          href="<c:url value="/statics/css/bootstrap.min.css" />">
-    <link type="text/css" rel="stylesheet"
-          href="<c:url value="/statics/css/bootstrap-theme.min.css" />">
-    <link type="text/css" rel="stylesheet"
-          href="<c:url value="/statics/css/user/registering.css" /> ">
 </head>
 <body>
     <div class="container">
@@ -79,7 +79,7 @@
                 </label>
                 <div class="col-xs-offset-1 col-xs-2">
                     <label class="radio-inline">
-                        <input type="radio" name="sex" id="male" value="男">男
+                        <input type="radio" name="sex" id="male" value="男" checked>男
                     </label>
                 </div>
                 <div class="col-xs-2">

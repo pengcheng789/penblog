@@ -23,7 +23,7 @@ public class RegisterUserServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
-        request.getRequestDispatcher("/WEB-INF/views/user/registering.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/user/register.jsp")
                 .forward(request, response);
     }
 
@@ -39,7 +39,7 @@ public class RegisterUserServlet extends HttpServlet{
                 .equals(request.getParameter("confirm_password"))){
             String error = "两次输入的密码不一样！";
             request.setAttribute("error", error);
-            request.getRequestDispatcher("/WEB-INF/views/user/registering.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/user/register.jsp")
                     .forward(request, response);
         }
 
@@ -49,12 +49,13 @@ public class RegisterUserServlet extends HttpServlet{
         if (UserService.getInstance().isMailExist(request.getParameter("mail"))){
             String error = "邮箱已被使用！";
             request.setAttribute("error", error);
-            request.getRequestDispatcher("/WEB-INF/views/user/registering.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/user/register.jsp")
                     .forward(request, response);
         }
 
         Map<String, Object> fieldMap = new HashMap<String, Object>();
-        fieldMap.put("id", UUID.randomUUID().toString());
+        String id = UUID.randomUUID().toString();
+        fieldMap.put("id", id);
         fieldMap.put("mail", request.getParameter("mail"));
         fieldMap.put("nickname", request.getParameter("nickname"));
         fieldMap.put("password", request.getParameter("password"));
@@ -62,8 +63,8 @@ public class RegisterUserServlet extends HttpServlet{
         fieldMap.put("create_date", new Date());
 
         UserService.getInstance().createUser(fieldMap);
-//        request.getRequestDispatcher("/WEB-INF/views/admin/user.jsp")
+//        request.getRequestDispatcher("/WEB-INF/views/admin/list.jsp")
 //                .forward(request, response);
-        response.sendRedirect("/penblog/admin/user");
+        response.sendRedirect("/penblog/user/profile/" + id);
     }
 }
