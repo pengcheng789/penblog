@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+          content="width=device-width, initial-scale=1, maximum-scale=1, userId-scalable=no">
     <link rel="stylesheet"
           href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -22,7 +22,7 @@
 <body>
     <div class="container">
         <div class="head">
-            404 NOT FOUND
+            400 BAD REQUEST
         </div>
 
         <div>

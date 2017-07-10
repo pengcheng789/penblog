@@ -31,7 +31,8 @@
                 <!-- 头像区 -->
                 <img src="<c:url value="${user.head_image}" />">
                 <div style="margin-top: 20px;">
-                    <button class="btn btn-default">
+                    <button class="btn btn-default"
+                            data-toggle="modal" data-target="#uploadHeadImgModal">
                         <span class="glyphicon glyphicon-pencil"></span>
                         上传头像
                     </button>
@@ -158,6 +159,40 @@
                         </button>
                         <button type="submit" class="btn btn-primary">
                             提交
+                        </button>
+                    </div>
+                </form>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 上传头像 -->
+    <div class="modal fade" tabindex="-1" role="dialog"
+         id="uploadHeadImgModal" aria-labelledby="uploadHeadImgModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="uploadHeadImgModalLabel">
+                        上传头像
+                    </h4>
+                </div>
+
+                <form action="<c:url value="/user/upload/head_image/${user.id}" />"
+                      method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        选择文件 <input type="file" name="file">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            取消
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            上传
                         </button>
                     </div>
                 </form>
