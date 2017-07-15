@@ -29,7 +29,12 @@ public class ViewUserServlet extends HttpServlet {
         }
 
         request.setAttribute("user", user);
-        request.getRequestDispatcher("/WEB-INF/views/user/profile.jsp")
-                .forward(request, response);
+        if(user.getIs_admin() == 0) {
+            request.getRequestDispatcher("/WEB-INF/views/user/profile.jsp")
+                    .forward(request, response);
+        } else {
+            request.getRequestDispatcher("/WEB-INF/views/user/profile_admin.jsp")
+                    .forward(request, response);
+        }
     }
 }

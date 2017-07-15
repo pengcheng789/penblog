@@ -13,6 +13,7 @@ public class User {
     private String sex;
     private String password;
     private Date create_date;
+    private short is_admin;
 
     public String getId() {
         return id;
@@ -68,5 +69,13 @@ public class User {
 
     public void setCreate_date(Date create_date) {
         this.create_date = create_date;
+    }
+
+    public short getIs_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(short is_admin) {
+        this.is_admin = is_admin;
     }
 }

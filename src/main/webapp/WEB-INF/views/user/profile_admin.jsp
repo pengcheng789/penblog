@@ -22,9 +22,9 @@
 </head>
 <body>
     <div class="container head">
-
-       <span id="sayHello">
-       </span> ${user.nickname}
+        <span id="sayHello"></span>
+        <br/>
+        管理员-${user.nickname}
     </div>
 
     <div class="container">
@@ -208,7 +208,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous">
     </script>
-    <script src="/penblog/statics/js/user/profile.js" ></script>
+    <script src="/penblog/statics/js/user/profile.js"></script>
 
     <script>document.getElementById("sayHello").innerHTML = sayHello();</script>
 
