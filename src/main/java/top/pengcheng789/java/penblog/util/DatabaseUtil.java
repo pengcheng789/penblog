@@ -47,6 +47,11 @@ public final class DatabaseUtil {
     }
 
     /**
+     * 数据表名
+     */
+    private static String tableName;
+
+    /**
      * 获取数据库连接
      * @return
      */
@@ -204,10 +209,26 @@ public final class DatabaseUtil {
     }
 
     /**
-     * 根据实例类返回表名。
+     * 可自定义表名。
+     * @param name
+     */
+    public static void setTableName(String name) {
+        tableName = name;
+    }
+
+    /**
+     * 返回tableName的值，
+     * 如果tableName为空，
+     * 则根据实例类返回表名。
      */
     private static String getTableName(Class<?> entityClass){
-        return entityClass.getSimpleName().toLowerCase();
+        if (tableName == null){
+            return entityClass.getSimpleName().toLowerCase();
+        } else {
+            String temp = tableName;
+            tableName = null;
+            return temp;
+        }
     }
 
 }

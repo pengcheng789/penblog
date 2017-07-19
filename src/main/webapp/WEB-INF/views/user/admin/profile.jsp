@@ -18,6 +18,8 @@
           crossorigin="anonymous">
     <link rel="stylesheet"
           href="<c:url value="/statics/css/user/profile.css" />" >
+    <link rel="stylesheet"
+          href="<c:url value="/statics/css/user/navbar.css" />">
     <title>Edit User - PenBlog</title>
 </head>
 <body>
@@ -26,6 +28,25 @@
         <br/>
         管理员-${user.nickname}
     </div>
+
+    <!-- 导航栏 -->
+    <div class="container my-nav">
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" class="active">
+                <a href="<c:url value="/user/profile/${user.id}"/>">
+                    个人信息
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="<c:url value="/passage/list/${user.id}" />">
+                    文章管理
+                </a>
+            </li>
+            <li role="presentation"><a href="#">收藏管理</a></li>
+            <li role="presentation"><a href="#">评论管理</a></li>
+        </ul>
+    </div>
+    <!-- /导航栏 -->
 
     <div class="container">
         <div class="row">

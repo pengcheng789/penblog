@@ -33,7 +33,7 @@ public class ViewUserServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/views/user/profile.jsp")
                     .forward(request, response);
         } else {
-            request.getRequestDispatcher("/WEB-INF/views/user/profile_admin.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/user/admin/profile.jsp")
                     .forward(request, response);
         }
     }

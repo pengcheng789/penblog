@@ -12,8 +12,10 @@ import java.util.Map;
 public class UserService {
     private static UserService instance;
 
+    /**
+     * Just make the method be privatized.
+     */
     private UserService(){
-        //TODO Just private the method.
     }
 
     /**
@@ -33,7 +35,6 @@ public class UserService {
      * @return
      */
     public List<User> getUsers(){
-        //TODO Get the user list from db.
 
         String sql = "SELECT * FROM user";
         List<User> users = DatabaseUtil.queryEntityList(User.class, sql);

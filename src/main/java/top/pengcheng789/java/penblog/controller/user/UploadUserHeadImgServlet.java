@@ -19,6 +19,7 @@ import java.io.IOException;
 @MultipartConfig
 public class UploadUserHeadImgServlet extends HttpServlet {
     @Override
+    @SuppressWarnings("unchecked")
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
         String pathInfo = request.getPathInfo();
@@ -31,7 +32,6 @@ public class UploadUserHeadImgServlet extends HttpServlet {
                     .forward(request, response);
         }
 
-        @SuppressWarnings("unchecked")
         boolean result = UploadHeadImgService.getInstance().uploadHeadImg(request, id);
 
         if (!result){

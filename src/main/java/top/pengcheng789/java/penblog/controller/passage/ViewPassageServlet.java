@@ -1,6 +1,8 @@
-package top.pengcheng789.java.penblog.controller.user;
+package top.pengcheng789.java.penblog.controller.passage;
 
+import top.pengcheng789.java.penblog.model.PassageCategory;
 import top.pengcheng789.java.penblog.model.User;
+import top.pengcheng789.java.penblog.service.PassageService;
 import top.pengcheng789.java.penblog.service.UserService;
 
 import javax.servlet.ServletException;
@@ -9,17 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
- * Created by pen on 17-7-9.
+ * Created by pen on 17-7-19.
  */
-
-@WebServlet("/user/edit/nickname/*")
-public class EditUserNameServlet extends HttpServlet {
+@WebServlet("/passage/list/*")
+public class ViewPassageServlet extends HttpServlet {
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
         String pathInfo = request.getPathInfo();
         String id = pathInfo.substring(1, pathInfo.length());
@@ -30,13 +30,13 @@ public class EditUserNameServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/views/common/404.jsp")
                     .forward(request, response);
         }
+        request.setAttribute("user", user);
 
-        request.setCharacterEncoding("UTF-8");
+        List<PassageCategory> categories =
+                PassageService.getInstance().getCategories();
+        request.setAttribute("categories", categories);
 
-        Map<String, Object> fieldMap = new HashMap<String, Object>();
-        fieldMap.put("nickname", request.getParameter("nickname"));
-        UserService.getInstance().updateUser(id, fieldMap);
-
-        response.sendRedirect("/penblog/user/profile/" + id);
+        request.getRequestDispatcher("/WEB-INF/views/passage/admin/passage.jsp")
+                .forward(request, response);
     }
 }

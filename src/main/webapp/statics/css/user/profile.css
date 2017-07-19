@@ -12,6 +12,9 @@
 .head_image img{
     width: 180px;
     height: 180px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .information {
