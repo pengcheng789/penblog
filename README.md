@@ -28,9 +28,11 @@
   GET:/,/home -- 主页。
 
 
-  GET:/user/registering -- 用户注册。
+  GET:/user/login -- 用户登录界面。
 
-  POST:/user/registering -- 用户注册表单提交。
+  GET:/user/register -- 用户注册界面。
+
+  POST:/user/register -- 用户注册表单提交。
 
   GET:/user/list -- 用户列表。
 
@@ -91,4 +93,8 @@
   + 修复一些bug。
   + 还没有对表单的空值进行验证。
   + 还没有认证和授权功能。
+  
+### v0.3.1
+  + 添加用户登录界面。
+  + 由于代码结构臃肿，近期准备重构。
 
