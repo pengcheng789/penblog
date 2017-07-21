@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: pen
-  Date: 17-7-3
-  Time: 下午5:45
+  Date: 17-7-21
+  Time: 下午9:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,12 +17,13 @@
           crossorigin="anonymous">
     <link type="text/css" rel="stylesheet"
           href="<c:url value="/statics/css/user/register.css" /> ">
-    <title>Register user - PenBlog</title>
+    <title>登录 - PenBlog</title>
 </head>
 <body>
+
     <div class="container">
         <div class="title">
-            Register<br/>
+            Login<br/>
             PenBlog Reader<br/>
         </div>
     </div>
@@ -45,19 +46,16 @@
                     <li><a href="#">Linux</a></li>
                 </ul>
             </li>
-            <li role="presentation" class="active">
+            <li role="presentation">
                 <a href="<c:url value="/user/register"/>">注册</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="active">
                 <a href="<c:url value="/user/login"/>">登录</a>
             </li>
         </ul>
     </div>
 
-    <div class="container register">
-        <div class="error">
-            ${error}
-        </div>
+    <div class="container">
         <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label for="mail" class="col-xs-offset-1 col-xs-2 control-label">
@@ -66,16 +64,6 @@
                 <div class="col-xs-6">
                     <input type="email" class="form-control" id="mail"
                            name="mail" placeholder="输入邮箱">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="nickname" class="col-xs-offset-1 col-xs-2 control-label">
-                    昵称
-                </label>
-                <div class="col-xs-6">
-                    <input type="text" class="form-control" id="nickname" name="nickname"
-                           placeholder="输入昵称">
                 </div>
             </div>
 
@@ -91,34 +79,8 @@
             </div>
 
             <div class="form-group">
-                <label for="confirm_password" class="col-xs-offset-1 col-xs-2 control-label">
-                    确认密码
-                </label>
-                <div class="col-xs-6">
-                    <input type="password" class="form-control" id="confirm_password"
-                           name="confirm_password" placeholder="再次输入密码进行确认">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-xs-offset-1 col-xs-2 control-label">
-                    性别
-                </label>
-                <div class="col-xs-offset-1 col-xs-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="male" value="男" checked>男
-                    </label>
-                </div>
-                <div class="col-xs-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="female" value="女">女
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-2">
-                    <input type="submit" class="btn btn-primary" value="注册">
+                    <input type="submit" class="btn btn-primary" value="登录">
                 </div>
                 <div class="col-sm-offset-1 col-xs-2">
                     <input type="reset" class="btn btn-default" value="重置">
@@ -132,6 +94,5 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous">
     </script>
-
 </body>
 </html>

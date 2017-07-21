@@ -42,7 +42,9 @@
             <li role="presentation">
                 <a href="<c:url value="/user/register"/>">注册</a>
             </li>
-            <li role="presentation"><a href="#">登录</a></li>
+            <li role="presentation">
+                <a href="<c:url value="/user/login"/>">登录</a>
+            </li>
         </ul>
     </div>
 
