@@ -25,32 +25,21 @@
 ***
 
 ## URL
-  GET:/,/home -- 主页。
+  GET:/ -- 主页。
 
-
-  GET:/user/login -- 用户登录界面。
 
   GET:/user/register -- 用户注册界面。
 
   POST:/user/register -- 用户注册表单提交。
 
   GET:/user/list -- 用户列表。
+  
+  GET:/user/profile -- 查看用户详情。
 
-  GET:/user/delete/{id} -- 删除用户,{id}为用户id。
+  DELETE:/user/profile -- 删除用户。
   
-  GET:/user/profile/{id} -- 查看用户详情，{id}为用户id。
-  
-  POST:/user/edit/name/{id} -- 修改用户的昵称，{id}为用户id。
-  
-  POST:/user/edit/sex/{id} -- 修改用户的性别，{id}为用户id。
-  
-  POST:/user/upload/head_image/{id} -- 上传用户头像，{id}为用户id。
-  
-  
-  GET:/passage/list/{id} -- 查看文章列表，{id}为用户id。
-  
-  POST:/passage/category/add/{id} -- 添加文章分类，{id}为用户id。
-
+  PUT:/user/profile -- 更新用户信息。
+    
 ***
 
 ## 参考书籍
@@ -99,5 +88,9 @@
   + 由于代码结构臃肿，近期准备重构。
   
 ### v0.4
-  + 使用新分支，进行代码重构。
-
+  + 进行代码重构。
+  + 添加类操作工具类和助手类，负责对应用包的类进行加载和管理。
+  + 添加反射工具类和Bean助手类，负责对加载的类进行实例化和管理。
+  + 添加依赖注入助手类，负责对存在依赖的成员变量进行注入。
+  + 添加Request,Handler,View,Data等bean类，对请求信息、请求处理、返回信息进行封装。
+  + 添加控制器助手类，对请求信息和请求处理的映射关系进行封装。

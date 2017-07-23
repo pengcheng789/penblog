@@ -1,16 +1,18 @@
-package top.pengcheng789.java.penblog.annotation.user;
+package top.pengcheng789.java.penblog.annotation;
 
-import javax.servlet.http.HttpServletRequest;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by pen on 17-7-21.
+ * 控制器注解
+ *
+ * CreateDate:2017-07-23
+ *
+ * @author pen
  */
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface RegisterFormCheck {
-
+public @interface Controller {
 }
