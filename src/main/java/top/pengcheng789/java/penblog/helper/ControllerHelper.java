@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 控制器助手类
+ *
  * CreateDate:2017-07-23
  *
  * @author pen
@@ -43,7 +45,7 @@ public final class ControllerHelper {
                             String mapping = action.value();
 
                             // 验证 URL 规则
-                            if (mapping.matches("\\w+:/\\w*")) {
+                            if (mapping.matches("\\w+:/[A-Za-z0-9_/]*")) {
                                 String[] array = mapping.split(":");
 
                                 if (ArrayUtil.isNotEmpty(array) && array.length == 2) {
@@ -61,6 +63,13 @@ public final class ControllerHelper {
                 }
             }
         }
+    }
+
+    /**
+     * 返回请求信息与请求处理器的映射
+     */
+    public static Map<Request, Handler> getActionMap() {
+        return ACTION_MAP;
     }
 
     /**

@@ -56,13 +56,15 @@ public final class ConfigHelper {
      * 获取应用 JSP 路径
      */
     public static String getAppJspPath(){
-        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.APP_JSP_PATH);
+        return PropsUtil.getString(CONFIG_PROPS,
+                ConfigConstant.APP_JSP_PATH, "/WEB-INF/view/");
     }
 
     /**
      * 获取应用静态资源路径
      */
     public static String getAppAssetPath(){
-        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.APP_ASSET_PATH);
+        return PropsUtil.getString(CONFIG_PROPS,
+                ConfigConstant.APP_ASSET_PATH, "/asset/");
     }
 }

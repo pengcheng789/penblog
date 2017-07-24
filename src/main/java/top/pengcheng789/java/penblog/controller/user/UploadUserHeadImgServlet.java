@@ -25,7 +25,8 @@ public class UploadUserHeadImgServlet extends HttpServlet {
         String pathInfo = request.getPathInfo();
         String id = pathInfo.substring(1, pathInfo.length());
 
-        User user = UserService.getInstance().getById(id);
+        // User user = UserService.getInstance().getById(id);
+        User user = null;
         if (user == null){
             response.setStatus(404);
             request.getRequestDispatcher("/WEB-INF/views/common/404.jsp")

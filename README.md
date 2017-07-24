@@ -34,11 +34,11 @@
 
   GET:/user/list -- 用户列表。
   
-  GET:/user/profile -- 查看用户详情。
+  GET:/user/profile?id={id} -- 查看用户详情， {id}为用户id。
 
-  DELETE:/user/profile -- 删除用户。
+  DELETE:/user/profile?id={id} -- 删除用户， {id}为用户id。
   
-  PUT:/user/profile -- 更新用户信息。
+  PUT:/user/profile?id={id} -- 更新用户信息， {id}为用户id。
     
 ***
 
@@ -94,3 +94,8 @@
   + 添加依赖注入助手类，负责对存在依赖的成员变量进行注入。
   + 添加Request,Handler,View,Data等bean类，对请求信息、请求处理、返回信息进行封装。
   + 添加控制器助手类，对请求信息和请求处理的映射关系进行封装。
+  
+### v0.4.1
+  + 添加核心请求转发器 DispatcherServlet ，负责对请求适配控制器。
+  + 将部分 User Servlet 转移至 UserController ，采用新架构开发。
+  + 完善工具类。

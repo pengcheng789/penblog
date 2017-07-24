@@ -17,9 +17,9 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <link rel="stylesheet"
-          href="<c:url value="/statics/css/user/profile.css" />" >
+          href="<c:url value="/asset/css/user/profile.css" />" >
     <link rel="stylesheet"
-          href="<c:url value="/statics/css/user/navbar.css" />">
+          href="<c:url value="/asset/css/user/navbar.css" />">
     <title>Edit User - PenBlog</title>
 </head>
 <body>
@@ -220,7 +220,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous">
     </script>
-    <script src="/penblog/statics/js/user/profile.js" ></script>
+    <script src="<c:url value="/asset/js/user/profile.js"/>" ></script>
 
     <script>document.getElementById("sayHello").innerHTML = sayHello();</script>
 

@@ -35,8 +35,8 @@
                 <td>${user.create_date}</td>
                 <td>${user.head_image}</td>
                 <td>
-                    <a href="<c:url value="/user/profile/${user.id}" />">view</a>
-                    <a href="<c:url value="/user/delete/${user.id}" />">delete</a>
+                    <a href="<c:url value="/user/profile?id=${user.id}" />">view</a>
+                    <a href="<c:url value="/user/delete?id=${user.id}" />">delete</a>
                 </td>
             </tr>
         </c:forEach>

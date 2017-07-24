@@ -58,7 +58,7 @@ public class UploadHeadImgService {
 
                     Map<String, Object> fieldMap = new HashMap<String, Object>();
                     fieldMap.put("head_image", "/statics/head_images/" + file.getName());
-                    UserService.getInstance().updateUser(userId, fieldMap);
+                    //UserService.getInstance().updateUser(userId, fieldMap);
 
                     result = true;
                 }

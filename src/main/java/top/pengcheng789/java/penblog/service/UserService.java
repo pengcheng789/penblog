@@ -1,5 +1,6 @@
 package top.pengcheng789.java.penblog.service;
 
+import top.pengcheng789.java.penblog.annotation.Service;
 import top.pengcheng789.java.penblog.model.User;
 import top.pengcheng789.java.penblog.util.DatabaseUtil;
 
@@ -9,26 +10,8 @@ import java.util.Map;
 /**
  * Created by pen on 17-7-6.
  */
+@Service
 public class UserService {
-    private static UserService instance;
-
-    /**
-     * Just make the method be privatized.
-     */
-    private UserService(){
-    }
-
-    /**
-     * 获取UserService实例
-     * @return
-     */
-    public static UserService getInstance(){
-        if (instance == null){
-            instance = new UserService();
-        }
-
-        return instance;
-    }
 
     /**
      * 获取用户列表

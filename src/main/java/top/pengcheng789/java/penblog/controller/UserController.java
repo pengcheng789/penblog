@@ -2,9 +2,14 @@ package top.pengcheng789.java.penblog.controller;
 
 import top.pengcheng789.java.penblog.annotation.Action;
 import top.pengcheng789.java.penblog.annotation.Controller;
+import top.pengcheng789.java.penblog.annotation.Inject;
 import top.pengcheng789.java.penblog.bean.Data;
 import top.pengcheng789.java.penblog.bean.Param;
 import top.pengcheng789.java.penblog.bean.View;
+import top.pengcheng789.java.penblog.model.User;
+import top.pengcheng789.java.penblog.service.UserService;
+
+import java.util.List;
 
 /**
  * 处理用户管理相关请求
@@ -16,13 +21,17 @@ import top.pengcheng789.java.penblog.bean.View;
 @Controller
 public class UserController {
 
+    @Inject
+    private UserService userService;
+
     /**
      * 用户列表界面
      */
     @Action("get:/user/list")
     public View list(Param param){
-        //TODO 完成用户列表界面请求
-        return null;
+        List<User> users = userService.getUsers();
+
+        return new View("user/list.jsp").addModel("users", users);
     }
 
     /**
@@ -30,8 +39,10 @@ public class UserController {
      */
     @Action("get:/user/profile")
     public View profile(Param param){
-        //TODO 完成用户个人界面请求
-        return null;
+        String id = param.getString("id");
+        User user = userService.getById(id);
+
+        return new View("user/profile.jsp").addModel("user", user);
     }
 
     /**
@@ -39,8 +50,7 @@ public class UserController {
      */
     @Action("get:/user/register")
     public View register(Param param){
-        //TODO 完成用户注册界面请求
-        return null;
+       return new View("user/register.jsp");
     }
 
     /**

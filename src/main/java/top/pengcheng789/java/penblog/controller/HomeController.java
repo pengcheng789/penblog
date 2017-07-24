@@ -20,7 +20,6 @@ public class HomeController {
      */
     @Action("get:/")
     public View index(Param param){
-        //TODO 完成首页请求处理
-        return null;
+        return new View("common/home.jsp");
     }
 }
