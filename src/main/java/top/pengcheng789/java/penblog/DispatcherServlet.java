@@ -136,6 +136,11 @@ public class DispatcherServlet extends HttpServlet{
                     writer.close();
                 }
             }
+        } else {
+            // 没有匹配的 URL 路径时，返回404页面
+            response.setStatus(404);
+            request.getRequestDispatcher(ConfigHelper.getAppJspPath() + "common/404.jsp")
+                    .forward(request, response);
         }
     }
 }

@@ -16,7 +16,7 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <link type="text/css" rel="stylesheet"
-          href="<c:url value="/statics/css/common/4xx.css" /> ">
+          href="<c:url value="/asset/css/common/4xx.css" /> ">
     <title>Not Found - PenBlog</title>
 </head>
 <body>
