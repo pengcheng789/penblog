@@ -19,7 +19,12 @@ public class HomeController {
      * 首页界面
      */
     @Action("get:/")
-    public View index(Param param){
+    public View index(){
         return new View("common/home.jsp");
+    }
+
+    @Action("get:/home")
+    public View home(){
+        return index();
     }
 }

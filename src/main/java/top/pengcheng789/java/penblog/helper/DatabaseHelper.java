@@ -1,10 +1,12 @@
-package top.pengcheng789.java.penblog.util;
+package top.pengcheng789.java.penblog.helper;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import top.pengcheng789.java.penblog.util.CollectionUtil;
+import top.pengcheng789.java.penblog.util.PropsUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,7 +18,7 @@ import java.util.Properties;
 /**
  * Created by pen on 17-7-2.
  */
-public final class DatabaseUtil {
+public final class DatabaseHelper {
     /**
      * 通过数据库连接池连接数据库。
      */

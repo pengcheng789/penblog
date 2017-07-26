@@ -9,7 +9,10 @@ import top.pengcheng789.java.penblog.bean.View;
 import top.pengcheng789.java.penblog.model.User;
 import top.pengcheng789.java.penblog.service.UserService;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * 处理用户管理相关请求
@@ -28,7 +31,7 @@ public class UserController {
      * 用户列表界面
      */
     @Action("get:/user/list")
-    public View list(Param param){
+    public View list(){
         List<User> users = userService.getUsers();
 
         return new View("user/list.jsp").addModel("users", users);
@@ -49,7 +52,7 @@ public class UserController {
      * 用户注册界面
      */
     @Action("get:/user/register")
-    public View register(Param param){
+    public View register(){
        return new View("user/register.jsp");
     }
 
@@ -58,8 +61,14 @@ public class UserController {
      */
     @Action("post:/user/register")
     public Data registerSubmit(Param param){
-        //TODO 完成用户注册提交请求
-        return null;
+        Map<String, Object> fieldMap = param.getFieldMap();
+        fieldMap.remove("confirm_password");
+        fieldMap.put("id", UUID.randomUUID().toString());
+        fieldMap.put("create_date", new Date());
+
+        boolean result = userService.createUser(fieldMap);
+
+        return new Data(result);
     }
 
     /**

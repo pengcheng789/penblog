@@ -58,7 +58,7 @@
         <div class="error">
             ${error}
         </div>
-        <form class="form-horizontal" method="post">
+        <form id="register_form" class="form-horizontal">
             <div class="form-group">
                 <label for="mail" class="col-xs-offset-1 col-xs-2 control-label">
                     邮箱
@@ -128,9 +128,23 @@
     </div>
 
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous">
+    </script>
+    <script>
+        $(function () {
+            $('#register_form').ajaxForm({
+                type: 'post',
+                url: '/penblog/user/register',
+                success: function (data) {
+                    if (data) {
+                        location.href = '/penblog/user/list';
+                    }
+                }
+            });
+        });
     </script>
 
 </body>

@@ -99,3 +99,10 @@
   + 添加核心请求转发器 DispatcherServlet ，负责对请求适配控制器。
   + 将部分 User Servlet 转移至 UserController ，采用新架构开发。
   + 完善工具类。
+  
+### v0.4.2
+  + 添加 AOP 架构，支持 AOP 特性。
+  + 重构文件上传功能。
+  + 重构核心请求转发器 DispatcherServlet 。
+  + 优化 Action 参数。
+  + 添加 ServletHelper 助手类， 负责封装 Request 和 Response 对象，实现 Servlet API 的解耦。

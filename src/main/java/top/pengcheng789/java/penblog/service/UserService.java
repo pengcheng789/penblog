@@ -1,9 +1,14 @@
 package top.pengcheng789.java.penblog.service;
 
 import top.pengcheng789.java.penblog.annotation.Service;
+import top.pengcheng789.java.penblog.bean.FileParam;
+import top.pengcheng789.java.penblog.helper.ServletHelper;
+import top.pengcheng789.java.penblog.helper.UploadHelper;
 import top.pengcheng789.java.penblog.model.User;
-import top.pengcheng789.java.penblog.util.DatabaseUtil;
+import top.pengcheng789.java.penblog.helper.DatabaseHelper;
 
+import javax.servlet.ServletContext;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +25,7 @@ public class UserService {
     public List<User> getUsers(){
 
         String sql = "SELECT * FROM user";
-        List<User> users = DatabaseUtil.queryEntityList(User.class, sql);
+        List<User> users = DatabaseHelper.queryEntityList(User.class, sql);
 
         return users;
     }
@@ -30,7 +35,7 @@ public class UserService {
      */
     public User getById(String id){
         String sql = "SELECT * FROM user WHERE id='" + id + "'";
-        User user = DatabaseUtil.queryEntity(User.class, sql);
+        User user = DatabaseHelper.queryEntity(User.class, sql);
 
         return user;
     }
@@ -40,7 +45,7 @@ public class UserService {
      */
     public User getByMail(String mail){
         String sql = "SELECT * FROM user WHERE mail='" + mail + "'";
-        User user = DatabaseUtil.queryEntity(User.class, sql);
+        User user = DatabaseHelper.queryEntity(User.class, sql);
 
         return user;
     }
@@ -50,21 +55,39 @@ public class UserService {
      * @return
      */
     public boolean createUser(Map<String, Object> fieldMap){
-        return DatabaseUtil.insertEntity(User.class, fieldMap);
+        return DatabaseHelper.insertEntity(User.class, fieldMap);
     }
 
     /**
      * 更新用户
      */
     public boolean updateUser(String id, Map<String, Object> fieldMap){
-        return DatabaseUtil.updateEntity(User.class, id, fieldMap);
+        return DatabaseHelper.updateEntity(User.class, id, fieldMap);
     }
 
     /**
      * 删除用户
      */
     public boolean deleteUser(String id){
-        return DatabaseUtil.deleteEntity(User.class, id);
+        return DatabaseHelper.deleteEntity(User.class, id);
+    }
+
+    /**
+     * 修改用户头像
+     */
+    public boolean updateHeadImage(String id, FileParam fileParam) {
+        String path = ServletHelper.getServletContext().getRealPath("/asset/head_image/");
+
+        Map<String, Object> fieldMap = new HashMap<String, Object>();
+        fieldMap.put("head_image", "/asset/head_image/" + fileParam.getFileName());
+
+        boolean result = DatabaseHelper.updateEntity(User.class, id, fieldMap);
+
+        if (result) {
+            UploadHelper.uploadFile(path, fileParam);
+        }
+
+        return result;
     }
 
     /**

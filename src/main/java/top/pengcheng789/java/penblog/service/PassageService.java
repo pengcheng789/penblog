@@ -1,7 +1,7 @@
 package top.pengcheng789.java.penblog.service;
 
 import top.pengcheng789.java.penblog.model.PassageCategory;
-import top.pengcheng789.java.penblog.util.DatabaseUtil;
+import top.pengcheng789.java.penblog.helper.DatabaseHelper;
 
 import java.util.List;
 import java.util.Map;
@@ -33,8 +33,8 @@ public class PassageService {
      * 添加分类
      */
     public void createCategory(Map<String, Object> fieldMap){
-        DatabaseUtil.setTableName("passage_category");
-        DatabaseUtil.insertEntity(PassageCategory.class, fieldMap);
+        DatabaseHelper.setTableName("passage_category");
+        DatabaseHelper.insertEntity(PassageCategory.class, fieldMap);
     }
 
     /**
@@ -42,7 +42,7 @@ public class PassageService {
      */
     public List<PassageCategory> getCategories(){
         String sql = "SELECT * FROM passage_category";
-        List<PassageCategory> categories = DatabaseUtil
+        List<PassageCategory> categories = DatabaseHelper
                 .queryEntityList(PassageCategory.class, sql);
 
         return categories;

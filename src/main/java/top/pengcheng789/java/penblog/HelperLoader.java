@@ -1,9 +1,6 @@
 package top.pengcheng789.java.penblog;
 
-import top.pengcheng789.java.penblog.helper.BeanHelper;
-import top.pengcheng789.java.penblog.helper.ClassHelper;
-import top.pengcheng789.java.penblog.helper.ControllerHelper;
-import top.pengcheng789.java.penblog.helper.IocHelper;
+import top.pengcheng789.java.penblog.helper.*;
 import top.pengcheng789.java.penblog.util.ClassUtil;
 
 /**
@@ -19,6 +16,7 @@ public final class HelperLoader {
         Class<?>[] classList = {
                 ClassHelper.class,
                 BeanHelper.class,
+                AopHelper.class,
                 IocHelper.class,
                 ControllerHelper.class
         };

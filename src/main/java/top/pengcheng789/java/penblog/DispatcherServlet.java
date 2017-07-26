@@ -4,9 +4,7 @@ import top.pengcheng789.java.penblog.bean.Data;
 import top.pengcheng789.java.penblog.bean.Handler;
 import top.pengcheng789.java.penblog.bean.Param;
 import top.pengcheng789.java.penblog.bean.View;
-import top.pengcheng789.java.penblog.helper.BeanHelper;
-import top.pengcheng789.java.penblog.helper.ConfigHelper;
-import top.pengcheng789.java.penblog.helper.ControllerHelper;
+import top.pengcheng789.java.penblog.helper.*;
 import top.pengcheng789.java.penblog.util.*;
 
 import javax.servlet.ServletConfig;
@@ -20,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -59,6 +55,10 @@ public class DispatcherServlet extends HttpServlet{
         String requestMethod = request.getMethod().toLowerCase();
         String requestPath = request.getPathInfo();
 
+        if (requestPath.equals("/favicon.ico")) {
+            return;
+        }
+
         // 获取 Action 处理器
         Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);
 
@@ -68,79 +68,78 @@ public class DispatcherServlet extends HttpServlet{
             Object controllerBean = BeanHelper.getBean(controllerClass);
 
             // 创建请求参数
-            Map<String, Object> paramMap = new HashMap<String, Object>();
-            Enumeration<String> paramNames = request.getParameterNames();
-            while (paramNames.hasMoreElements()) {
-                String paramName = paramNames.nextElement();
-                String paramValue = request.getParameter(paramName);
-                paramMap.put(paramName, paramValue);
+            Param param;
+            if (UploadHelper.isMultipart(request)) {
+                param = UploadHelper.createParam(request);
+            } else {
+                param = RequestHelper.createParam(request);
             }
-
-            String body = CodecUtil.decodeURL(
-                    StreamUtil.getString(request.getInputStream())
-            );
-            if (StringUtil.isNotEmpty(body)) {
-                String[] params = StringUtil.splitString(body, "&");
-
-                if (ArrayUtil.isNotEmpty(params)) {
-                    for (String param : params) {
-                        String[] array = StringUtil.splitString(param, "=");
-
-                        if (ArrayUtil.isNotEmpty(array) && array.length == 2) {
-                            String paramName = array[0];
-                            String paramValue = array[1];
-                            paramMap.put(paramName, paramValue);
-                        }
-                    }
-                }
-            }
-
-            Param param = new Param(paramMap);
 
             // 调用 Acton 方法
             Method actionMethod = handler.getActionMethod();
-            Object result = ReflectionUtil
-                    .invokeMethod(controllerBean, actionMethod, param);
+            Object result;
+            // 若请求参数为空，则不需要传入参数
+            if (param.isEmpty()) {
+                result = ReflectionUtil.invokeMethod(controllerBean, actionMethod);
+            } else {
+                result = ReflectionUtil.invokeMethod(controllerBean,
+                        actionMethod, param);
+            }
 
             // 处理 Action 方法返回值
             if (result instanceof View) {
                 // 返回 JSP 页面
-                View view = (View)result;
-                String path = view.getPath();
-
-                if (path.startsWith("/")) {
-                    response.sendRedirect(request.getContextPath() + path);
-                } else {
-                    Map<String, Object> model = view.getModel();
-                    for (Map.Entry<String, Object> entry : model.entrySet()) {
-                        request.setAttribute(entry.getKey(), entry.getValue());
-                    }
-
-                    request.getRequestDispatcher(ConfigHelper.getAppJspPath()
-                            + path).forward(request, response);
-                }
+                handleViewResult((View)result, request, response);
             } else if (result instanceof Data) {
                 // 返回 JSON 数据
-                Data data = (Data)result;
-                Object model = data.getModel();
-
-                if (model != null) {
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("UTF-8");
-
-                    PrintWriter writer = response.getWriter();
-                    String json = JsonUtil.toJson(model);
-
-                    writer.write(json);
-                    writer.flush();
-                    writer.close();
-                }
+                handleDataResult((Data)result, response);
             }
         } else {
             // 没有匹配的 URL 路径时，返回404页面
             response.setStatus(404);
             request.getRequestDispatcher(ConfigHelper.getAppJspPath() + "common/404.jsp")
                     .forward(request, response);
+        }
+    }
+
+    /**
+     * 处理 View 返回值
+     */
+    private void handleViewResult(View view, HttpServletRequest request,
+                                  HttpServletResponse response)
+        throws IOException, ServletException {
+        String path = view.getPath();
+
+        if (path.startsWith("/")) {
+            response.sendRedirect(request.getContextPath() + path);
+        } else {
+            Map<String, Object> model = view.getModel();
+            for (Map.Entry<String, Object> entry : model.entrySet()) {
+                request.setAttribute(entry.getKey(), entry.getValue());
+            }
+
+            request.getRequestDispatcher(ConfigHelper.getAppJspPath()
+                    + path).forward(request, response);
+        }
+    }
+
+    /**
+     * 处理 Data 返回值
+     */
+    private void handleDataResult(Data data, HttpServletResponse response)
+            throws IOException {
+        Object model = data.getModel();
+
+        if (model != null) {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            PrintWriter writer = response.getWriter();
+            String json = JsonUtil.toJson(model);
+
+            writer.write(json);
+            writer.flush();
+            writer.close();
         }
     }
 }

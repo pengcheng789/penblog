@@ -8,6 +8,12 @@ import org.apache.commons.lang3.StringUtils;
  * Created by pen on 17-7-2.
  */
 public final class StringUtil {
+
+    /**
+     * 字符串分隔符
+     */
+    public static final String SEPARATOR = String.valueOf((char)29);
+
     public static boolean isEmpty(String string){
         if(string != null){
             string = string.trim();
