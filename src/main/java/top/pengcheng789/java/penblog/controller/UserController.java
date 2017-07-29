@@ -1,10 +1,12 @@
 package top.pengcheng789.java.penblog.controller;
 
 import top.pengcheng789.java.penblog.annotation.Action;
+import top.pengcheng789.java.penblog.annotation.CheckForm;
 import top.pengcheng789.java.penblog.annotation.Controller;
 import top.pengcheng789.java.penblog.annotation.Inject;
 import top.pengcheng789.java.penblog.bean.Data;
 import top.pengcheng789.java.penblog.bean.Param;
+import top.pengcheng789.java.penblog.bean.Replier;
 import top.pengcheng789.java.penblog.bean.View;
 import top.pengcheng789.java.penblog.model.User;
 import top.pengcheng789.java.penblog.service.UserService;
@@ -59,6 +61,7 @@ public class UserController {
     /**
      * 用户注册提交
      */
+    @CheckForm("register")
     @Action("post:/user/register")
     public Data registerSubmit(Param param){
         Map<String, Object> fieldMap = param.getFieldMap();
@@ -68,7 +71,7 @@ public class UserController {
 
         boolean result = userService.createUser(fieldMap);
 
-        return new Data(result);
+        return new Data(new Replier(result));
     }
 
     /**

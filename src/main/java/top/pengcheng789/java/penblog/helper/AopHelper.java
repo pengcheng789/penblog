@@ -3,7 +3,9 @@ package top.pengcheng789.java.penblog.helper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.pengcheng789.java.penblog.annotation.Aspect;
+import top.pengcheng789.java.penblog.annotation.Controller;
 import top.pengcheng789.java.penblog.proxy.AspectProxy;
+import top.pengcheng789.java.penblog.proxy.CheckFormProxy;
 import top.pengcheng789.java.penblog.proxy.Proxy;
 import top.pengcheng789.java.penblog.proxy.ProxyManager;
 
@@ -64,15 +66,9 @@ public final class AopHelper {
      */
     private static Map<Class<?>, Set<Class<?>>> createProxyMap() throws Exception {
         Map<Class<?>, Set<Class<?>>> proxyMap = new HashMap<Class<?>, Set<Class<?>>>();
-        Set<Class<?>> proxyClassSet = ClassHelper.getClassSetBySuper(AspectProxy.class);
 
-        for (Class<?> proxyClass : proxyClassSet) {
-            if (proxyClass.isAnnotationPresent(Aspect.class)) {
-                Aspect aspect = proxyClass.getAnnotation(Aspect.class);
-                Set<Class<?>> targetClassSet = createTargetClassSet(aspect);
-                proxyMap.put(proxyClass, targetClassSet);
-            }
-        }
+        addAspectProxy(proxyMap);
+        addCheckFormProxy(proxyMap);
 
         return proxyMap;
     }
@@ -102,5 +98,26 @@ public final class AopHelper {
         }
 
         return targetMap;
+    }
+
+    private static void addAspectProxy(
+            Map<Class<?>, Set<Class<?>>> proxyMap) throws Exception {
+        Set<Class<?>> proxyClassSet = ClassHelper.getClassSetBySuper(AspectProxy.class);
+
+        for (Class<?> proxyClass : proxyClassSet) {
+            if (proxyClass.isAnnotationPresent(Aspect.class)) {
+                Aspect aspect = proxyClass.getAnnotation(Aspect.class);
+                Set<Class<?>> targetClassSet = createTargetClassSet(aspect);
+                proxyMap.put(proxyClass, targetClassSet);
+            }
+        }
+    }
+
+    private static void addCheckFormProxy (Map<Class<?>, Set<Class<?>>> proxyMap)
+        throws Exception {
+        Set<Class<?>> controllerClassSet = ClassHelper
+                .getClassSetByAnnotation(Controller.class);
+
+        proxyMap.put(CheckFormProxy.class, controllerClassSet);
     }
 }

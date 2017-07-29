@@ -7,18 +7,18 @@ package top.pengcheng789.java.penblog.bean;
  *
  * @author pen
  */
-public class Data {
+public class Data <T> {
 
     /**
      * 模型数据
      */
-    private Object model;
+    private T model;
 
-    public Data(Object model){
+    public Data(T model){
         this.model = model;
     }
 
-    public Object getModel() {
+    public T getModel() {
         return model;
     }
 }

@@ -101,4 +101,11 @@ public class UserService {
 
         return result;
     }
+
+    /**
+     * 查询邮箱是否不存在
+     */
+    public boolean isMailNotExist(String mail) {
+        return !isMailExist(mail);
+    }
 }

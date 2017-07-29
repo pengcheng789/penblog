@@ -139,9 +139,7 @@
                 type: 'post',
                 url: '/penblog/user/register',
                 success: function (data) {
-                    if (data) {
-                        location.href = '/penblog/user/list';
-                    }
+                    alert(data.comments);
                 }
             });
         });
