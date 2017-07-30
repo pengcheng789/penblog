@@ -11,16 +11,16 @@ public class Replier {
 
     private Boolean result;
     private String field;
-    private String meaasge;
+    private String message;
 
     public Replier(Boolean result) {
         this(result, "", "");
     }
 
-    public Replier(Boolean result, String field, String meaasge) {
+    public Replier(Boolean result, String field, String message) {
         this.result = result;
         this.field = field;
-        this.meaasge = meaasge;
+        this.message = message;
     }
 
     public Boolean getResult() {
@@ -31,7 +31,7 @@ public class Replier {
         return field;
     }
 
-    public String getMeaasge() {
-        return meaasge;
+    public String getMessage() {
+        return message;
     }
 }

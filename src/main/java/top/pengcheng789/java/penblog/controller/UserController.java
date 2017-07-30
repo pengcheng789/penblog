@@ -79,7 +79,9 @@ public class UserController {
      */
     @Action("put:/user/profile")
     public Data userUpdate(Param param){
-        //TODO 完成用户信息更新请求
+        Map<String, Object> fieldMap = param.getFieldMap();
+        String id = (String)fieldMap.get("id");
+
         return null;
     }
 

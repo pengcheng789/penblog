@@ -55,8 +55,7 @@
     </div>
 
     <div class="container register">
-        <div class="error">
-            ${error}
+        <div class="error" id="error">
         </div>
         <form id="register_form" class="form-horizontal">
             <div class="form-group">
@@ -133,17 +132,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous">
     </script>
-    <script>
-        $(function () {
-            $('#register_form').ajaxForm({
-                type: 'post',
-                url: '/penblog/user/register',
-                success: function (data) {
-                    alert(data.comments);
-                }
-            });
-        });
-    </script>
+    <script src="/penblog/asset/js/user/register.js"></script>
 
 </body>
 </html>

@@ -2,6 +2,18 @@
  * Created by pen on 17-7-11.
  */
 
+$(document).ready(function() {
+    $("form").ajaxForm({
+        type: 'post',
+        url: '/penblog/user/profile',
+        success: function (data) {
+            if (data.result == true) {
+                location.href = '/penblog/user/profile?id=' + data.id;
+            }
+        }
+    });
+});
+
 function sayHello() {
     var text=""; day = new Date( ); time = day.getHours( );
     if (( time>=0) && (time < 6 ))

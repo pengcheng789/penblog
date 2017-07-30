@@ -123,7 +123,7 @@
                     </h4>
                 </div>
 
-                <form action="<c:url value="/user/edit/nickname/${user.id}" />" method="post">
+                <form>
                 <div class="modal-body">
                     <input type="text" name="nickname" class="form-control"
                            value="${user.nickname}">
@@ -157,7 +157,7 @@
                     </h4>
                 </div>
 
-                <form action="<c:url value="/user/edit/sex/${user.id}" />" method="post">
+                <form>
                     <div class="modal-body">
                         <label class="radio-inline">
                             <input type="radio" name="sex" id="male" value="男" checked>男
@@ -196,8 +196,7 @@
                     </h4>
                 </div>
 
-                <form action="<c:url value="/user/upload/head_image/${user.id}" />"
-                      method="post" enctype="multipart/form-data">
+                <form enctype="multipart/form-data">
                     <div class="modal-body">
                         选择文件 <input type="file" name="file">
                     </div>

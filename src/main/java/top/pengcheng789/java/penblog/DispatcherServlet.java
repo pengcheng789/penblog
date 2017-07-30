@@ -1,9 +1,6 @@
 package top.pengcheng789.java.penblog;
 
-import top.pengcheng789.java.penblog.bean.Data;
-import top.pengcheng789.java.penblog.bean.Handler;
-import top.pengcheng789.java.penblog.bean.Param;
-import top.pengcheng789.java.penblog.bean.View;
+import top.pengcheng789.java.penblog.bean.*;
 import top.pengcheng789.java.penblog.helper.*;
 import top.pengcheng789.java.penblog.util.*;
 
