@@ -26,7 +26,7 @@ public final class ClassUtil {
     /**
      * 获取类加载器
      */
-    public static ClassLoader getClassLoasder(){
+    public static ClassLoader getClassLoader(){
         return Thread.currentThread().getContextClassLoader();
     }
 
@@ -36,12 +36,19 @@ public final class ClassUtil {
     public static Class<?> loadClass(String className, boolean isInitializes){
         Class<?> cls;
         try {
-            cls = Class.forName(className, isInitializes, getClassLoasder());
+            cls = Class.forName(className, isInitializes, getClassLoader());
         } catch (ClassNotFoundException e){
             LOGGER.error("load class failure", e);
             throw new RuntimeException(e);
         }
         return cls;
+    }
+
+    /**
+     * 加载类（默认将初始化类）
+     */
+    public static Class<?> loadClass(String className) {
+        return loadClass(className, true);
     }
 
     /**
@@ -51,7 +58,7 @@ public final class ClassUtil {
         Set<Class<?>> classSet = new HashSet<Class<?>>();
 
         try{
-            Enumeration<URL> urls = getClassLoasder()
+            Enumeration<URL> urls = getClassLoader()
                     .getResources(packageName.replace(".", "/"));
             while (urls.hasMoreElements()){
                 URL url = urls.nextElement();

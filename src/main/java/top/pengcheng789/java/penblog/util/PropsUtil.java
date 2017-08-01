@@ -72,4 +72,22 @@ public final class PropsUtil {
 
         return value;
     }
+
+    /**
+     * 获取 boolean 类型属性（默认值为 false）
+     */
+    public static boolean getBoolean(Properties props, String key) {
+        return getBoolean(props, key, false);
+    }
+
+    /**
+     * 获取 boolean 类型属性（可指定默认值）
+     */
+    public static boolean getBoolean(Properties props, String key, boolean defaultValue) {
+        boolean value = defaultValue;
+        if (props.containsKey(key)) {
+            value = CastUtil.castBoolean(props.getProperty(key));
+        }
+        return value;
+    }
 }

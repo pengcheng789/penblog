@@ -1,7 +1,9 @@
 package top.pengcheng789.java.penblog.helper;
 
 import top.pengcheng789.java.penblog.ConfigConstant;
+import top.pengcheng789.java.penblog.security.Security;
 import top.pengcheng789.java.penblog.util.PropsUtil;
+import top.pengcheng789.java.penblog.util.ReflectionUtil;
 
 import java.util.Properties;
 
@@ -74,5 +76,48 @@ public final class ConfigHelper {
     public static int getAppUploadLimit() {
         return PropsUtil.getInt(CONFIG_PROPS,
                 ConfigConstant.APP_UPLOAD_LIMIT, 10);
+    }
+
+    /**
+     * 获取 Shiro Realms
+     */
+    public static String getRealms() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.REALMS);
+    }
+
+    /**
+     * 获取 Shiro Security
+     */
+    public static Security getSecurity() {
+        String className = PropsUtil.getString(CONFIG_PROPS, ConfigConstant.SECURITY);
+        return (Security) ReflectionUtil.newInstance(className);
+    }
+
+    /**
+     * 获取 Jdbc 认证信息的查询语句
+     */
+    public static String getJdbcAuthcQuery() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.JDBC_AUTHC_QUERY);
+    }
+
+    /**
+     * 获取 Jdbc 角色信息的查询语句
+     */
+    public static String getJdbcRolesQuery() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.JDBC_ROLES_QUERY);
+    }
+
+    /**
+     * 获取 Jdbc 权限信息的查询语句
+     */
+    public static String getJdbcPermissionQuery() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.JDBC_PERMISSION_QUERY);
+    }
+
+    /**
+     * 获取缓存状态信息
+     */
+    public static boolean isCache() {
+        return PropsUtil.getBoolean(CONFIG_PROPS, ConfigConstant.CACHE);
     }
 }

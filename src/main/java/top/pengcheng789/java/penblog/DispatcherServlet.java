@@ -1,13 +1,12 @@
 package top.pengcheng789.java.penblog;
 
+import org.apache.shiro.web.env.EnvironmentLoaderListener;
 import top.pengcheng789.java.penblog.bean.*;
 import top.pengcheng789.java.penblog.helper.*;
+import top.pengcheng789.java.penblog.security.SecurityFilter;
 import top.pengcheng789.java.penblog.util.*;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +42,16 @@ public class DispatcherServlet extends HttpServlet{
         ServletRegistration defaultServlet
                 = servletContext.getServletRegistration("default");
         defaultServlet.addMapping(ConfigHelper.getAppAssetPath() + "*");
+
+        // 设置 Shiro 初始化参数
+        servletContext.setInitParameter("shiroConfigLocations",
+                "classpath:security.ini");
+        // 注册 Shiro Listener
+        servletContext.addListener(EnvironmentLoaderListener.class);
+        //注册 Shiro Filter
+        FilterRegistration.Dynamic securityFilter = servletContext
+                .addFilter("securityFilter", SecurityFilter.class);
+        securityFilter.addMappingForUrlPatterns(null, false, "/*");
     }
 
     @Override

@@ -106,3 +106,6 @@
   + 重构核心请求转发器 DispatcherServlet 。
   + 优化 Action 参数。
   + 添加 ServletHelper 助手类， 负责封装 Request 和 Response 对象，实现 Servlet API 的解耦。
+
+### v0.4.3
+  + 添加安全机制，包括认证、授权机制

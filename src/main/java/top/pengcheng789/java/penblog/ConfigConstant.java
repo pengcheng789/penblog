@@ -20,4 +20,16 @@ public interface ConfigConstant {
     String APP_JSP_PATH = "app.jap_path";
     String APP_ASSET_PATH = "app.asset_path";
     String APP_UPLOAD_LIMIT = "app.upload_limit";
+
+    String REALMS = "security.realms";
+    String REALMS_JDBC = "jdbc";
+    String REALMS_USER = "user";
+
+    String SECURITY = "security.user.class";
+
+    String JDBC_AUTHC_QUERY = "security.jdbc.authc_query";
+    String JDBC_ROLES_QUERY = "security.jdbc.roles_query";
+    String JDBC_PERMISSION_QUERY = "security.jdbc.permission_query";
+
+    String CACHE = "security.cache";
 }

@@ -34,6 +34,14 @@ public final class ReflectionUtil {
     }
 
     /**
+     * 创建实例（根据类名）
+     */
+    public static Object newInstance(String className) {
+        Class<?> cls = ClassUtil.loadClass(className);
+        return newInstance(cls);
+    }
+
+    /**
      * 调用方法
      */
     public static Object invokeMethod(Object obj, Method method, Object... args) {

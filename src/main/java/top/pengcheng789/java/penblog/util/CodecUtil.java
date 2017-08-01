@@ -1,5 +1,6 @@
 package top.pengcheng789.java.penblog.util;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,5 +48,12 @@ public final class CodecUtil {
         }
 
         return target;
+    }
+
+    /**
+     * MD5 加密
+     */
+    public static String md5(String source) {
+        return DigestUtils.md5Hex(source);
     }
 }
